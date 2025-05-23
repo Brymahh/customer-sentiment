@@ -95,11 +95,15 @@ def main():
     # Vectorize and train the model
     tfidf, model = model_vectorize(text, y)
 
-    saved_steps = {'tfidf_vectorizer': tfidf, 'model': model}
-    with open('model/saved_steps.pkl', 'wb') as f:
-        pickle.dump(saved_steps,f)
-    
+    # saved_steps = {'tfidf_vectorizer': tfidf, 'model': model}
+    # with open('model/saved_steps.pkl', 'wb') as f:
+    #     pickle.dump(saved_steps,f)
 
+    with open("model/tfidf_vectorizer.pkl", "wb") as f:
+        pickle.dump(tfidf, f)
+
+    with open("model/nb_model.pkl", "wb") as f:
+        pickle.dump(model, f)
 
 
 if __name__ == '__main__':
