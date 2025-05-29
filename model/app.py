@@ -14,6 +14,7 @@ from main import preprocess
 @st.cache_resource
 def download_nltk_data():
     nltk.download('stopwords')
+    nltk.download('punkt')
 
 
 def users_input():
@@ -84,7 +85,7 @@ def main():
             "\nKindly provide us with your comments or reservations towards our services")
     
     download_nltk_data()
-    
+
     input = users_input()
     clean_input=preprocess(input)
     #final_input = pd.Series([clean_input])
