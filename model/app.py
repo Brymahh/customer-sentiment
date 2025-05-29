@@ -4,11 +4,16 @@ import streamlit as st
 import re
 import pickle
 import nltk
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 from main import preprocess
+
 
 # 1. Recieve input from a user
 # 2. Predict sentiment
+
+@st.cache_resource
+def download_nltk_data():
+    nltk.download('stopwords')
 
 
 def users_input():
@@ -77,6 +82,8 @@ def main():
         st.title('Sentiment Input Test')
         st.write("We'd absolutely love your input, \n" 
             "\nKindly provide us with your comments or reservations towards our services")
+    
+    download_nltk_data()
     
     input = users_input()
     clean_input=preprocess(input)
