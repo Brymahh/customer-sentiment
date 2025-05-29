@@ -15,6 +15,7 @@ from main import preprocess
 def download_nltk_data():
     nltk.download('stopwords')
     nltk.download('punkt')
+    nltk.download('punkt_tab')
 
 
 def users_input():
