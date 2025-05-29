@@ -4,8 +4,8 @@ import re
 import pickle
 import nltk
 from nltk.corpus import stopwords
-#nltk.download('punkt')
-#from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+from nltk.tokenize import word_tokenize
 from sklearn.model_selection import train_test_split 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
