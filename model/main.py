@@ -3,9 +3,10 @@ import numpy as np
 import re
 import pickle
 import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
-#nltk.download('punkt')
-#from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize
 from sklearn.model_selection import train_test_split 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -13,7 +14,6 @@ from sklearn.metrics import accuracy_score, classification_report
 
 
 # 1. Recieve the users input
-# 1a. Do a word cloud
 # 2. Preprocess (Tokenize the input)
 # 3. Perform Sentiment Analysis
 # 4. Return the results
@@ -93,14 +93,25 @@ def main():
     text = X.apply(preprocess)
 
     # Vectorize and train the model
-    tfidf, model = model_vectorize(text, y)
+    tfidf, model = model_vectorize(text, y) 
 
-    saved_steps = {'tfidf_vectorizer': tfidf, 'model': model}
-    with open('model/saved_steps.pkl', 'wb') as f:
-        pickle.dump(saved_steps,f)
-    
+    # saved_steps = {'tfidf_vectorizer': tfidf, 'model': model}
+    # with open('model/saved_steps.pkl', 'wb') as f:
+    #     pickle.dump(saved_steps,f)
 
+    with open("model/tfidf_vectorizer.pkl", "wb") as f:
+        pickle.dump(tfidf, f)
 
+    with open("model/nb_model.pkl", "wb") as f:
+        pickle.dump(model, f)
+
+    # resolve iterable error
+    # text2 = "This is a great product! I love it."
+    # text2=[text2]
+    # # using the model
+    # vectorized_input2 = tfidf.transform(text2)
+    # pred = model.predict(vectorized_input2)
+    # print(f'The prediction for the text "{text2}" is: {pred[0]}')
 
 if __name__ == '__main__':
     main()
